@@ -37,8 +37,11 @@ class UsersController < ApplicationController
 
     matching_usernames= User.where({:username => url_username})
     @the_user = matching_usernames.first
-    
-    render({:template => "/users/"+@the_user.username+"/feed"})
+    #@user_leaders = @the_user.leaders
+    #@leader_photos= Photo.where({:owner_id => @user_leaders.username})
+    #@leader_photos = Photos.where({:owner_id => user_leaders.id})
+
+    render({:template => "/users/feed"})
     #defensive coding example here!!!!! - Dane
     #if @the_user == nil
       #redirect_to("/404")

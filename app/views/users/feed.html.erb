@@ -39,7 +39,13 @@
 
     </ul>
 
-<h2>Own Photos (<%= @the_user.own_photos.size %>)</h2>
+
+<% user_leaders = @the_user.leaders %>
+<% leader_ids = user_leaders.map(&:id) %>
+<% leader_photos = Photo.where({ :owner_id => leader_ids }) %>
+
+<h2>Feed (<%= leader_photos.count %>)</h2>
+  
 
 <table border = "1">
   <tr>
@@ -51,7 +57,7 @@
     <th></th>
   </tr>
 
-  <% @the_user.own_photos.each do |a_photo| %>
+  <% leader_photos.each do |a_photo| %>
   <tr>
     <td>
     <img src="<%= a_photo.image %>" alt="">
