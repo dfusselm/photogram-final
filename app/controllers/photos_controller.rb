@@ -8,6 +8,9 @@ class PhotosController < ApplicationController
   end
 
   def show
+    if  current_user == nil
+      redirect_to("/", { :notice => "You need to sign in or sign up before continuing." })       
+    else
     the_id = params.fetch("path_id")
 
     matching_photos = Photo.where({ :id => the_id })
@@ -15,15 +18,16 @@ class PhotosController < ApplicationController
     @the_photo = matching_photos.at(0)
 
     render({ :template => "photos/show" })
+    end
   end
 
   def create
     the_photo = Photo.new
     the_photo.caption = params.fetch("query_caption")
-    the_photo.comments_count = params.fetch("query_comments_count")
+    the_photo.comments_count = 0
     the_photo.image = params.fetch("query_image")
-    the_photo.likes_count = params.fetch("query_likes_count")
-    the_photo.owner_id = params.fetch("query_owner_id")
+    the_photo.likes_count = 0
+    the_photo.owner_id = current_user.id
 
     if the_photo.valid?
       the_photo.save

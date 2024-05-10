@@ -36,11 +36,46 @@
         </td>
 
         <td>
-          <%= a_user.private %>
+          <% if a_user.private == true %>
+          Yes
+          <% else %>
+          No
+          <% end %>
         </td>
 
         <td>
-          <% a_user.private %>
+          <% if current_user != nil %>
+            
+              
+            <% current_user_following = current_user.leaders %>
+            <% contains_following = current_user_following.include?(a_user) %>
+            <% if contains_following == true %>
+              <a href="/">Unfollow</a>
+
+              <% else %>
+              <% current_pending_request = FollowRequest.where({:recipient_id => a_user.id, :sender_id => current_user.id, :status => "pending"}) %>
+              <% if current_pending_request.size == 1 %>
+              <%# current_user_requests_sent = current_user.sent_follow_requests %>
+            <%# contains_request = current_user_requests_sent.include?(a_user) %>
+            <%# if contains_request == true %>
+
+            
+              Request sent. <a href="/">Cancel</a>
+              <%# elsif current_request.status == "rejected" %>
+
+              <% elsif %>
+              <form action="/insert_follow_request" method="post">
+              <button>
+               Follow
+              </button>
+              </form>
+            
+            
+            <% end %>
+            <% end %>
+
+            
+          <% end %>
         </td>
 
         <td>
