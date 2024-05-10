@@ -3,7 +3,7 @@ class UsersController < ApplicationController
       matching_users = User.all
 
       @list_of_users = matching_users.order({ :username => :asc})
-      render({:template => "user_templates/index"})
+      render({:template => "users/index"})
   end
 
 
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if @the_user == nil
       redirect_to("/404")
     else
-      render({:template => "user_templates/show"})
+      render({:template => "users/show"})
     end
   end
 
