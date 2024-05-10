@@ -31,9 +31,9 @@ class User < ApplicationRecord
         })
       
         has_many  :likes, class_name: "Like", foreign_key: "fan_id", dependent: :destroy
-        has_many  :followerrequests, class_name: "Followrequest", foreign_key: "recipient_id", dependent: :destroy
+        has_many  :followerrequests, class_name: "FollowRequest", foreign_key: "recipient_id", dependent: :destroy
         has_many  :comments, class_name: "Comment", foreign_key: "author_id", dependent: :destroy
-        has_many  :followrequests, class_name: "Followrequest", foreign_key: "sender_id", dependent: :destroy
+        has_many  :followrequests, class_name: "FollowRequest", foreign_key: "sender_id", dependent: :destroy
         has_many :recipients, through: :followrequests, source: :recipient
         has_many :senders, through: :followerrequests, source: :sender
 

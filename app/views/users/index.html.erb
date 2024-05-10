@@ -36,14 +36,21 @@
         </td>
 
         <td>
-          <% if a_user.private == true %>
-          Yes
-          <% else %>
+          <% if a_user.private != true %>
           No
+          <% else %>
+          Yes
           <% end %>
         </td>
 
         <td>
+        <%# current_accepted_request = FollowRequest.where({:recipient_id => a_user.id, :sender_id => current_user.id, :status => "accepted"}) %>
+            <%# current_pending_request = FollowRequest.where({:recipient_id => a_user.id, :sender_id => current_user.id, :status => "pending"}) %>
+            <%# current_rejected_request = FollowRequest.where({:recipient_id => a_user.id, :sender_id => current_user.id, :status => "rejected"}) %>
+
+            <%# the_accepted_request = current_accepted_request.first %>
+            <%# the_pending_request = current_pending_request.first %>
+            <%# the_rejected_request = current_rejected_request.first %>
           <% if current_user != nil %>
             
            <%# @current_accepted_requests.each do |a_request| %>
@@ -51,6 +58,8 @@
               
             <%# end %> 
             <%# end %>
+
+            
             <% current_accepted_request = FollowRequest.where({:recipient_id => a_user.id, :sender_id => current_user.id, :status => "accepted"}) %>
             <% current_pending_request = FollowRequest.where({:recipient_id => a_user.id, :sender_id => current_user.id, :status => "pending"}) %>
             <% current_rejected_request = FollowRequest.where({:recipient_id => a_user.id, :sender_id => current_user.id, :status => "rejected"}) %>

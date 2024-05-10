@@ -17,52 +17,7 @@
         Followers
       </dt>
       <dd>
-      <% if @the_user.id != current_user.id  %>
-        
-      
         <%= @the_user.followers.count %>
-        <% current_user_leaders = current_user.leaders %>
-        <% current_user_following_theuser = current_user_leaders.select{|leaders| leaders.id == @the_user.id }%>
-         <% if current_user_following_theuser.size > 0 %>
-          <a href="/">Unfollow</a> 
-          <% else %>
-          <form action="/insert_follow_request" method="post">
-              <button>
-               Follow
-              </button>
-              </form>
-
-        <% end %>
-      <% else %>
-      Pending follow requests
-      <% current_pending_request = FollowRequest.where({:recipient_id => @the_user.id, :status => "pending"}) %>
-      <% current_pending_request %>
-        <% current_pending_request.each do |request| %>
-        <ul>
-        <li>
-        <%= request.sender.username %>
-        <div>
-        <form action="/modify_follow_request/<%= request.id %>" method="post">
-              <button>
-               Accept
-              </button>
-              </form>
-        </div>
-        <form action="/modify_follow_request/<%= request.id %>" method="post">
-              <button>
-               Reject
-              </button>
-              </form>
-        <div>
-        </div>
-
-        </li>
-        
-        </ul>
-        <% end %>
-
-
-      <% end %>
       </dd>
 
       <dt>

@@ -70,14 +70,14 @@
 
       <% @list_of_photos.each do |a_photo| %>
       <% private_status = a_photo.poster.private %>
-      <% if private_status != true %>
+      <% if private_status == false %>
         
        <tr>
         <td>
           <img src="<%= a_photo.image %>" alt="">
         </td>
 
-        <td><%= a_photo.caption %><%= private_status %></td>
+        <td><%= a_photo.caption %></td>
 
         <td>
           <%= a_photo.poster.username %>
