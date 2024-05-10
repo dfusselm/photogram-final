@@ -17,14 +17,14 @@
         Followers
       </dt>
       <dd>
-        <%#= @the_user.followers? %>
+        <%= @the_user.followers.count %>
       </dd>
 
       <dt>
         Following
       </dt>
       <dd>
-        <%#= @the_user.following? %>
+        <%= @the_user.leaders.count %>
       </dd>
    
     </dl>
@@ -58,7 +58,7 @@
     </td>
     <td><%= a_photo.poster.username %></td>
     <td><%= a_photo.caption %></td>
-    <td><%= time_ago_in_words(a_photo.created_at) %></td>
+    <td><%= time_ago_in_words(a_photo.created_at) %> ago</td>
     <td><%= a_photo.likes_count %></td>
     <td><a href="/photos/<%= a_photo.id %>">Show details</a></td>
   </tr>
@@ -67,9 +67,3 @@
 
 
 </table>
-
-
-<hr>
-<hr>
-<hr>
-<hr>
