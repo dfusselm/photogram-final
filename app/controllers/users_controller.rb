@@ -3,6 +3,16 @@ class UsersController < ApplicationController
       matching_users = User.all
 
       @list_of_users = matching_users.order({ :username => :asc})
+
+      #@current_accepted_requests = FollowRequest.where({:sender_id => current_user.id, :status => "accepted"})
+      #@current_pending_requess = FollowRequest.where({:sender_id => current_user.id, :status => "pending"})
+      #@current_rejected_requests = FollowRequest.where({:sender_id => current_user.id, :status => "rejected"})
+
+      #@the_accepted_requests = current_accepted_request
+      #@the_pending_requests = current_pending_request
+      #@the_rejected_requests = current_rejected_request
+
+
       render({:template => "users/index"})
   end
 
@@ -12,6 +22,7 @@ class UsersController < ApplicationController
 
     matching_usernames= User.where({:username => url_username})
     @the_user = matching_usernames.first
+    
     
     #defensive coding example here!!!!! - Dane
     if @the_user == nil
